@@ -1,0 +1,18 @@
+{
+  "name": "dragdropPanel-VanillaJavascript",
+  "version": "1.0.0",
+  "description": "A panel to produce simpler and more useful content with drag and drop method.",
+  "author": "Burak Kurt <krtburrak@outlook.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burakkrt/dragdropPanel-VanillaJavascript.git"
+  },
+  "homepage": "https://react-joyride.com/",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "2.8.7"
+  },
+  "scripts": {
+    "format": "prettier \"**/*.{js,jsx,ts,tsx,html}\" --write"
+  }
+}
