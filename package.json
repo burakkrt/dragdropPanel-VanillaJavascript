@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/burakkrt/dragdropPanel-VanillaJavascript.git"
   },
-  "homepage": "https://react-joyride.com/",
+  "homepage": "https://burakkrt.github.io/dragdropPanel-VanillaJavascript/",
   "license": "MIT",
   "devDependencies": {
     "prettier": "2.8.7"
