@@ -10,9 +10,13 @@
   "homepage": "https://burakkrt.github.io/dragdropPanel-VanillaJavascript/",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^8.38.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.27.5",
     "prettier": "2.8.7"
   },
   "scripts": {
-    "format": "prettier \"**/*.{js,jsx,ts,tsx,html}\" --write"
+    "format": "prettier \"**/*.{js,jsx,ts,tsx,html}\" --write",
+    "lint": "eslint --ext .js assets"
   }
 }
