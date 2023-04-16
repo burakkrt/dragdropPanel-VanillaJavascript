@@ -9,6 +9,7 @@
     "ecmaVersion": "latest"
   },
   "rules": {
-    "eol-last": "off"
+    "eol-last": "off",
+    "arrow-parens": ["warn","as-needed"]
   }
 }
