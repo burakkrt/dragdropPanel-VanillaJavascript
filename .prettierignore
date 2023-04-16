@@ -1,2 +1,5 @@
 node_modules
-bootstrap*
+bootstrap.min.css
+bootstrap.min.css.map
+bootstrap.bundle.min.js
+bootstrap.bundle.min.js.map
