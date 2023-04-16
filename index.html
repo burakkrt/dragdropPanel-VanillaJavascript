@@ -13,6 +13,9 @@
     <title>Drag-Drop Panel</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <script src="assets/js/scripts.js" defer type="module"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
   </head>
   <body>
     <div class="sidebar position-fixed z-3 h-100 p-3 bg-body-secondary">
@@ -20,52 +23,54 @@
         <h1 class="fs-4 text-uppercase">Drag&Drop Panel</h1>
       </div>
       <div class="panel-body d-flex flex-column gap-2 mt-5">
-        <div class="draggable bg-warning p-2 rounded-2" draggable="true">
+        <div class="draggable cursor-pointer bg-warning p-2 rounded-2" draggable="true" id="input">
           <span>Input</span>
         </div>
-        <div class="draggable bg-warning p-2 rounded-2" draggable="true">
-          <span>Label</span>
+        <div
+          class="draggable cursor-pointer bg-warning p-2 rounded-2"
+          draggable="true"
+          id="textarea"
+        >
+          <span>Textarea</span>
+        </div>
+        <div
+          class="draggable cursor-pointer bg-warning p-2 rounded-2"
+          draggable="true"
+          id="selectlist"
+        >
+          <span>Selectlist</span>
         </div>
       </div>
     </div>
     <div class="main-content p-3">
-      <div class="element d-flex flex-column gap-3 p-3 rounded-3">
-        <div class="element-header">
+      <div class="row-element d-flex flex-column gap-3 p-3 rounded-3 mb-3" id="row1">
+        <div class="row-element-header">
           <div class="d-flex flex-row justify-content-between align-items-center">
             <h5>Row 1</h5>
             <h5>Buttons</h5>
           </div>
         </div>
-        <div class="dropzone flex-grow-1 w-75 p-4 rounded-4 mx-auto text-center">
-          <span class="dropicon material-symbols-outlined" style="font-size: 32px"> pin_drop </span>
-          <p class="m-auto mt-2">Drag and drop the element you want to add.</p>
+        <div class="dropzone null flex-grow-1 w-75 p-4 rounded-4 mx-auto">
+          <div
+            class="drag-info d-flex flex-column align-items-center justify-content-center row-gap-3 column-gap-1 pe-none"
+          >
+            <span
+              class="dropicon material-symbols-outlined"
+              style="font-size: 32px; animation: dropzoneIconAnimated 2s infinite ease-in-out"
+            >
+              pin_drop
+            </span>
+            <span>Drag and drop the element you want to add.</span>
+          </div>
         </div>
       </div>
-      <!--      <div class="element p-3 rounded-3">-->
-      <!--        <div class="element-header d-flex flex-row justify-content-between align-items-center">-->
-      <!--          <div class="row">-->
-      <!--            <h5>Row 2</h5>-->
-      <!--          </div>-->
-      <!--          &lt;!&ndash;          <div class="buttons">&ndash;&gt;-->
-      <!--          &lt;!&ndash;            <button class="btn btn-danger">Delete</button>&ndash;&gt;-->
-      <!--          &lt;!&ndash;            <button class="btn btn-warning">Edit</button>&ndash;&gt;-->
-      <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
-      <!--        </div>-->
-      <!--        <div class="element-body mt-4">-->
-      <!--          &lt;!&ndash;          <p>&ndash;&gt;-->
-      <!--          &lt;!&ndash;            Acoratio consetetur ea. Conubiaquaeque doming graeco mattis eius massa detraxit tellus&ndash;&gt;-->
-      <!--          &lt;!&ndash;            finibus nibh. Curabiturcivibus elit scripta referrentur cursus consectetur sapien populo&ndash;&gt;-->
-      <!--          &lt;!&ndash;            utroque similique eirmod lorem ex justo reque nam aenean ad contentiones.&ndash;&gt;-->
-      <!--          &lt;!&ndash;            Venenatisfacilisi conceptam vivamus cubilia consectetur luctus congue affert.&ndash;&gt;-->
-      <!--          &lt;!&ndash;            Epicurialterum veniam nihil mea imperdiet indoctum risus tota quo delicata brute&ndash;&gt;-->
-      <!--          &lt;!&ndash;            consectetur inciderint tamquam salutatus constituto vocibus alienum. Ususem qualisque&ndash;&gt;-->
-      <!--          &lt;!&ndash;            quod suscipiantur accommodare dicant auctor urna comprehensam deserunt risus usu.&ndash;&gt;-->
-      <!--          &lt;!&ndash;          </p>&ndash;&gt;-->
-      <!--        </div>-->
-      <!--      </div>-->
+      <div>
+        <button class="btn btn-primary d-flex flex-row justify-content-center align-items-center mx-auto mt-3" id="addRow">
+          <span class="material-symbols-outlined me-2">add_circle</span>Add Row
+        </button>
+      </div>
     </div>
 
-    <script src="assets/js/script.js" defer></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

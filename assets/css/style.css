@@ -1,49 +1,62 @@
-:root{
-    --siddebar-width: 20%;
+:root {
+  --siddebar-width: 20%;
 }
 
-body{
-    font-family: 'Roboto', sans-serif;
+body {
+  font-family: 'Roboto', sans-serif;
 }
 
-.sidebar{
-    left: 0;
-    top: 0;
-    width: var(--siddebar-width);
+.sidebar {
+  left: 0;
+  top: 0;
+  width: var(--siddebar-width);
 }
 
-.main-content{
-    margin-left: var(--siddebar-width);
+.main-content {
+  margin-left: var(--siddebar-width);
 }
 
-.element{
-    min-height: 170px;
-    border: 1px dashed black;
+.row-element {
+  min-height: 170px;
+  border: 1px dashed black;
 }
 
-.draggable{
-    cursor: move;
+.cursor-move {
+  cursor: move;
 }
 
-.dropzone{
-    background-color: #F0F0F0;
+.cursor-pointer {
+  cursor: pointer;
 }
 
-.dropzone .dropicon{
-    position: relative;
-    top:-3px;
-    left: 0;
-    animation: dropzoneIconAnimated 2s infinite ease-in-out;
+.draggable {
+}
+
+.dropzone {
+  background-color: #f0f0f0;
+}
+
+.dropzone .dropicon {
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 @keyframes dropzoneIconAnimated {
-    0% {
-        top: -5px;
-    }
-    50%{
-        top: 5px;
-    }
-    100%{
-        top: -5px;
-    }
+  0% {
+    top: -5px;
+  }
+  50% {
+    top: 5px;
+  }
+  100% {
+    top: -5px;
+  }
+}
+
+.ui-state-highlight {
+  height: 5.5em;
+  line-height: 1.2em;
+  border: 1px dashed black;
+  border-radius: 5px;
 }
