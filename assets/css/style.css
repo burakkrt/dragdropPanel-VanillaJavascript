@@ -7,21 +7,43 @@ body{
 }
 
 .sidebar{
-    position: fixed;
     left: 0;
     top: 0;
     width: var(--siddebar-width);
-    z-index: 100;
 }
 
 .main-content{
     margin-left: var(--siddebar-width);
-
 }
 
 .element{
     min-height: 170px;
-    padding: 5px;
     border: 1px dashed black;
-    border-radius: 7px;
+}
+
+.draggable{
+    cursor: move;
+}
+
+.dropzone{
+    background-color: #F0F0F0;
+}
+
+.dropzone .dropicon{
+    position: relative;
+    top:-3px;
+    left: 0;
+    animation: dropzoneIconAnimated 2s infinite ease-in-out;
+}
+
+@keyframes dropzoneIconAnimated {
+    0% {
+        top: -5px;
+    }
+    50%{
+        top: 5px;
+    }
+    100%{
+        top: -5px;
+    }
 }
