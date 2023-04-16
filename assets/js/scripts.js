@@ -3,7 +3,7 @@ import getFormHtmlElement from './components/formElements.js';
 import addRowElement from './components/addRowElement.js';
 // DOM element
 const draggables = document.querySelectorAll('.draggable');
-const elements = document.querySelectorAll('.row-element');
+
 // Local veriables
 let dragtype;
 
@@ -43,26 +43,31 @@ draggables.forEach(draggable => {
   draggable.addEventListener('dragend', () => {});
 });
 
-elements.forEach(element => {
-  element.addEventListener('dragover', e => {
-    if (e.target.classList.contains('dropzone')) {
-      e.preventDefault();
-    }
-  });
+export function elementsAddeventListener() {
+  const elements = document.querySelectorAll('.row-element');
+  elements.forEach(element => {
+    element.addEventListener('dragover', e => {
+      if (e.target.classList.contains('dropzone')) {
+        e.preventDefault();
+      }
+    });
 
-  // element.addEventListener('dragleave', e => {
-  //   if (e.target.classList.contains('dropzone')) {
-  //   }
-  // });
+    // element.addEventListener('dragleave', e => {
+    //   if (e.target.classList.contains('dropzone')) {
+    //   }
+    // });
 
-  element.addEventListener('drop', e => {
-    // console.log(dragtype);
-    // console.log(e.target);
-    const rowid = e.target.parentNode.getAttribute('id');
-    addRowContent(rowid, dragtype);
-    jquerySortable(rowid);
+    element.addEventListener('drop', e => {
+      // console.log(dragtype);
+      // console.log(e.target);
+      const rowid = e.target.parentNode.getAttribute('id');
+      addRowContent(rowid, dragtype);
+      jquerySortable(rowid);
+    });
   });
-});
+}
+
+elementsAddeventListener();
 
 // OPTIMIZE:Bazen form elementlerinin sortable ile yerini
 //  değiştirdiğinde takılamlar oluşuyor ona çözüm bul.

@@ -1,3 +1,5 @@
+import { elementsAddeventListener } from '../scripts.js';
+
 export default function addRowElement() {
   const newRowCount = document.querySelector('.main-content').children.length;
   const rowElement = `
@@ -26,4 +28,5 @@ export default function addRowElement() {
   document
     .querySelector('.main-content')
     .lastElementChild.insertAdjacentHTML('beforebegin', rowElement);
+  elementsAddeventListener();
 }
