@@ -1,5 +1,5 @@
 :root{
-    --siddebar-width: 475px;
+    --siddebar-width: 20%;
 }
 
 body{
@@ -17,4 +17,11 @@ body{
 .main-content{
     margin-left: var(--siddebar-width);
 
+}
+
+.element{
+    min-height: 170px;
+    padding: 5px;
+    border: 1px dashed black;
+    border-radius: 7px;
 }
