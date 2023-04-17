@@ -9,6 +9,8 @@ let dragtype;
 
 window.editInput = editInput;
 window.editElement = editElement;
+window.deleteElement = deleteElement;
+window.clearRow = clearRow;
 
 export function jquerySortable(rowid) {
   $(`#${rowid} .row-content`).sortable({
@@ -30,6 +32,9 @@ export function addRowContent(rowid, formElementType) {
     dropzone.querySelector('.drag-info span').style.animation = '';
     dropzone.querySelector('.drag-info').classList.replace('flex-column', 'flex-row');
     dropzone.classList.remove('null');
+    if (document.getElementById(`${rowid}-clearRowBtn`).classList.contains('disabled')) {
+      document.getElementById(`${rowid}-clearRowBtn`).classList.remove('disabled');
+    }
   } else {
     dropzone
       .querySelector('.row-content')
@@ -67,7 +72,7 @@ document.getElementById('addRow').addEventListener('click', () => {
       <div class="row-element-header">
         <div class="d-flex flex-row justify-content-between align-items-center">
           <h5>Row ${rowCount}</h5>
-          <h5>Buttons</h5>
+          <button class="btn btn-sm btn-danger d-flex flex-row align-items-center justify-content-center gap-1 disabled" onclick="clearRow(${newId})" id="${newId}-clearRowBtn"><span class="material-symbols-outlined">delete_sweep</span>All row delete</button>
         </div>
       </div>
       <div class="dropzone null flex-grow-1 w-75 p-4 rounded-4 mx-auto">
@@ -75,7 +80,7 @@ document.getElementById('addRow').addEventListener('click', () => {
           class="drag-info d-flex flex-column align-items-center justify-content-center row-gap-3 column-gap-1 pe-none"
         >
           <span
-            class="dropicon material-symbols-outlined"
+            class="drop-icon material-symbols-outlined"
             style="font-size: 32px; animation: dropzoneIconAnimated 2s infinite ease-in-out"
           >
             pin_drop
@@ -249,7 +254,54 @@ export function editInput(id, rowid, type) {
   }
 }
 
+export function deleteElement(thisElement, rowId) {
+  thisElement.parentElement.remove();
+  if (rowId.querySelector('.dropzone .row-content').children.length === 0) {
+    if (rowId.getAttribute('id') === 'row1') {
+      rowId.querySelector('.dropzone .row-content').remove();
+      rowId.querySelector('.dropzone').classList.add('null');
+      rowId.querySelector('.dropzone .drag-info').classList.replace('flex-row', 'flex-column');
+      rowId.querySelector('.dropzone .drag-info .drop-icon').style.animation =
+        'dropzoneIconAnimated 2s infinite ease-in-out';
+      if (
+        !document
+          .getElementById(`${rowId.getAttribute('id')}-clearRowBtn`)
+          .classList.contains('disabled')
+      ) {
+        document
+          .getElementById(`${rowId.getAttribute('id')}-clearRowBtn`)
+          .classList.add('disabled');
+      }
+    } else rowId.remove();
+  }
+}
+
+function clearRow(rowId) {
+  if (rowId.getAttribute('id') === 'row1') {
+    if (rowId.querySelector('.dropzone .row-content')) {
+      if (rowId.querySelector('.dropzone .row-content').children.length > 0) {
+        rowId.querySelector('.dropzone .row-content').remove();
+        rowId.querySelector('.dropzone').classList.add('null');
+        rowId.querySelector('.dropzone .drag-info').classList.replace('flex-row', 'flex-column');
+        rowId.querySelector('.dropzone .drag-info .drop-icon').style.animation =
+          'dropzoneIconAnimated 2s infinite ease-in-out';
+        if (
+          !document
+            .getElementById(`${rowId.getAttribute('id')}-clearRowBtn`)
+            .classList.contains('disabled')
+        ) {
+          document
+            .getElementById(`${rowId.getAttribute('id')}-clearRowBtn`)
+            .classList.add('disabled');
+        }
+      }
+    }
+  } else rowId.remove();
+}
+
 // OPTIMIZE:Bazen form elementlerinin sortable ile yerini
 //  değiştirdiğinde takılamlar oluşuyor ona çözüm bul.
 
 // TODO: formElement lerdeki id leri ayarla.
+
+// TODO: html 'deki modal 'ın içeriği temizlenecek (idler ve bootsttrapdan kalanlar)

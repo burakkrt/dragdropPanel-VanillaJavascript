@@ -1,4 +1,4 @@
-import { editInput } from '../scripts.js';
+import { deleteElement, editInput } from '../scripts.js';
 
 export default function getFormHtmlElement(rowid, formElementType) {
   const randomId = Math.floor(Math.random() * 1000000);
@@ -12,8 +12,11 @@ export default function getFormHtmlElement(rowid, formElementType) {
         <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'input')">
           <span class="material-symbols-outlined">edit_note</span>
         </span>
+        <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined">delete</span>
+        </span>
         <span class="input-group-text cursor-move" draggable="true">
-          <span class="material-symbols-outlined">drag_indicator</span>
+          <span class="material-symbols-outlined" >drag_indicator</span>
         </span>
       </div>
     `;
@@ -28,7 +31,10 @@ export default function getFormHtmlElement(rowid, formElementType) {
         <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'textarea')">
           <span class="material-symbols-outlined">edit_note</span>
         </span>
-        <span class="input-group-text cursor-move" id="basic-addon1" draggable="true">
+        <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined">delete</span>
+        </span>
+        <span class="input-group-text cursor-move" draggable="true">
           <span class="material-symbols-outlined">drag_indicator</span>
         </span>
       </div>
@@ -49,6 +55,9 @@ export default function getFormHtmlElement(rowid, formElementType) {
         <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'selectlist')">
           <span class="material-symbols-outlined">edit_note</span>
         </span>
+        <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined">delete</span>
+        </span>
         <span class="input-group-text cursor-move" draggable="true">
           <span class="material-symbols-outlined">drag_indicator</span>
         </span>
@@ -64,6 +73,9 @@ export default function getFormHtmlElement(rowid, formElementType) {
       <input type="text" class="form-control bg-white" aria-label="Did you drink water?" value="Did you drink water?" disabled id="${randomId}">
       <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'checkbox')">
           <span class="material-symbols-outlined">edit_note</span>
+      </span>
+      <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined">delete</span>
       </span>
       <span class="input-group-text cursor-move" draggable="true">
           <span class="material-symbols-outlined">drag_indicator</span>
