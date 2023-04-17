@@ -1,22 +1,20 @@
 // Import components
+// eslint-disable-next-line import/extensions,import/no-cycle
 import getFormHtmlElement from './components/formElements.js';
 // DOM element
 const draggables = document.querySelectorAll('.draggable');
 const elements = document.querySelectorAll('.row-element');
 // Local veriables
 let dragtype;
-// Since the scritp file type is module, it is necessary to define the functions in the window.
-window.editInput = editInput;
-window.editElement = editElement;
-window.deleteElement = deleteElement;
-window.clearRow = clearRow;
-window.addFormElement = addFormElement;
 // We move form elements with jQuery Sortable.
 export function jquerySortable(rowid) {
-  $(`#${rowid} .row-content`).sortable({
+  const t = `#${rowid}`;
+  // eslint-disable-next-line no-undef
+  $(t).find('.row-content').sortable({
     placeholder: 'ui-state-highlight',
   });
-  $(`#${rowid} .row-content`).disableSelection();
+  // eslint-disable-next-line no-undef
+  $(t).find('.row-content').disableSelection();
 }
 // To drag form blocks in the sidebar
 draggables.forEach(draggable => {
@@ -26,6 +24,29 @@ draggables.forEach(draggable => {
 
   draggable.addEventListener('dragend', () => {});
 });
+// Create a new line item for dragged form elements
+export function addRowContent(rowid, formElementType) {
+  const dropzone = document.querySelector(`#${rowid} .dropzone`);
+  if (dropzone.classList.contains('null')) {
+    dropzone.insertAdjacentHTML(
+      'afterbegin',
+      `<div class="row-content d-flex flex-column gap-3 gap-md-2 mb-3"> ${getFormHtmlElement(
+        rowid,
+        formElementType,
+      )} </div>`,
+    );
+    dropzone.querySelector('.drag-info span').style.animation = '';
+    dropzone.querySelector('.drag-info').classList.replace('flex-column', 'flex-row');
+    dropzone.classList.remove('null');
+    if (document.getElementById(`${rowid}-clearRowBtn`).classList.contains('disabled')) {
+      document.getElementById(`${rowid}-clearRowBtn`).classList.remove('disabled');
+    }
+  } else {
+    dropzone
+      .querySelector('.row-content')
+      .insertAdjacentHTML('beforeend', getFormHtmlElement(rowid, formElementType));
+  }
+}
 // To place dragged form blocks into rows.
 elements.forEach(element => {
   element.addEventListener('dragover', e => {
@@ -54,29 +75,6 @@ elements.forEach(element => {
     }
   });
 });
-// Create a new line item for dragged form elements
-export function addRowContent(rowid, formElementType) {
-  const dropzone = document.querySelector(`#${rowid} .dropzone`);
-  if (dropzone.classList.contains('null')) {
-    dropzone.insertAdjacentHTML(
-      'afterbegin',
-      `<div class="row-content d-flex flex-column gap-3 gap-md-2 mb-3"> ${getFormHtmlElement(
-        rowid,
-        formElementType,
-      )} </div>`,
-    );
-    dropzone.querySelector('.drag-info span').style.animation = '';
-    dropzone.querySelector('.drag-info').classList.replace('flex-column', 'flex-row');
-    dropzone.classList.remove('null');
-    if (document.getElementById(`${rowid}-clearRowBtn`).classList.contains('disabled')) {
-      document.getElementById(`${rowid}-clearRowBtn`).classList.remove('disabled');
-    }
-  } else {
-    dropzone
-      .querySelector('.row-content')
-      .insertAdjacentHTML('beforeend', getFormHtmlElement(rowid, formElementType));
-  }
-}
 // Clicking the Add Row button creates a new row.
 document.getElementById('addRow').addEventListener('click', () => {
   const rowCount = document.querySelector('.main-content').children.length;
@@ -107,13 +105,7 @@ document.getElementById('addRow').addEventListener('click', () => {
   document
     .querySelector('.main-content')
     .lastElementChild.insertAdjacentHTML('beforebegin', rowElement);
-
-  document.querySelector(`#${newId}`).addEventListener('dragover', e => {
-    if (e.target.classList.contains('dropzone')) {
-      e.preventDefault();
-    }
-  });
-
+  // Assign event monitors to the newly added row. Step 1
   document.querySelector(`#${newId}`).addEventListener('dragover', e => {
     if (e.target.classList.contains('dropzone')) {
       e.preventDefault();
@@ -121,7 +113,7 @@ document.getElementById('addRow').addEventListener('click', () => {
       e.target.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
     }
   });
-
+  // Assign event monitors to the newly added row. Step 2
   document.querySelector(`#${newId}`).addEventListener('dragleave', e => {
     if (e.target.classList.contains('dropzone')) {
       e.preventDefault();
@@ -129,7 +121,7 @@ document.getElementById('addRow').addEventListener('click', () => {
       e.target.style.boxShadow = '';
     }
   });
-
+  // Assign event monitors to the newly added row. Step 3
   document.querySelector(`#${newId}`).addEventListener('drop', e => {
     const rowid = e.target.parentNode.getAttribute('id');
     addRowContent(rowid, dragtype);
@@ -140,7 +132,7 @@ document.getElementById('addRow').addEventListener('click', () => {
     }
   });
 });
-
+// Click the edit icon next to the form element and recreate the properties of the current element.
 function editElement(id, type) {
   function closeModal() {
     document.getElementById('closeModalButton').click();
@@ -209,7 +201,8 @@ function editElement(id, type) {
     }
   }
 }
-
+// Click on the edit icon next to the form element and
+// open the modal window to edit the current element.
 export function editInput(id, rowid, type) {
   const modalFormElement = document.getElementById('modalFormElements');
   const chanceButton = document.getElementById('chanceButton');
@@ -219,13 +212,12 @@ export function editInput(id, rowid, type) {
   }
 
   if (type === 'checkbox') {
-    const modalElements = `
+    modalFormElement.innerHTML = `
     <div class="mb-3">
       <label for="newValue" class="col-form-label">Checkbox value :</label>
       <input type="text" class="form-control" id="newValue">
     </div>
     `;
-    modalFormElement.innerHTML = modalElements;
 
     chanceButton.setAttribute('onclick', `editElement(${id},"${type}")`);
     modalTitle.textContent = `${
@@ -234,7 +226,7 @@ export function editInput(id, rowid, type) {
     modalOpen();
   }
   if (type === 'selectlist') {
-    const modalElements = `
+    modalFormElement.innerHTML = `
     <div class="mb-3">
       <label for="${id}-newListname" class="col-form-label">Selectlist Name :</label>
       <input type="text" class="form-control" id="${id}-newListname">
@@ -252,7 +244,6 @@ export function editInput(id, rowid, type) {
       <input type="text" class="form-control" id="${id}-newSelect3">
     </div>
     `;
-    modalFormElement.innerHTML = modalElements;
     chanceButton.setAttribute('onclick', `editElement(${id},"${type}")`);
     modalTitle.textContent = `${
       rowid.querySelector('.row-element-header h5').textContent
@@ -260,13 +251,12 @@ export function editInput(id, rowid, type) {
     modalOpen();
   }
   if (type === 'textarea') {
-    const modalElements = `
+    modalFormElement.innerHTML = `
     <div class="mb-3">
       <label for="${id}-newTextareaLabel" class="col-form-label">Textarea Label :</label>
       <input type="text" class="form-control" id="${id}-newTextareaLabel">
     </div>
     `;
-    modalFormElement.innerHTML = modalElements;
     chanceButton.setAttribute('onclick', `editElement(${id},"${type}")`);
     modalTitle.textContent = `${
       rowid.querySelector('.row-element-header h5').textContent
@@ -274,13 +264,12 @@ export function editInput(id, rowid, type) {
     modalOpen();
   }
   if (type === 'input') {
-    const modalElements = `
+    modalFormElement.innerHTML = `
     <div class="mb-3">
       <label for="${id}-newInputLabel" class="col-form-label">Input Label :</label>
       <input type="text" class="form-control" id="${id}-newInputLabel">
     </div>
     `;
-    modalFormElement.innerHTML = modalElements;
     chanceButton.setAttribute('onclick', `editElement(${id},"${type}")`);
     modalTitle.textContent = `${
       rowid.querySelector('.row-element-header h5').textContent
@@ -288,37 +277,44 @@ export function editInput(id, rowid, type) {
     modalOpen();
   }
 }
-
+// Delete the existing form element by clicking the delete icon next to the form element.
 export function deleteElement(thisElement, rowId) {
+  const currentRowElement = rowId;
   thisElement.parentElement.remove();
-  if (rowId.querySelector('.dropzone .row-content').children.length === 0) {
-    if (rowId.getAttribute('id') === 'row1') {
-      rowId.querySelector('.dropzone .row-content').remove();
-      rowId.querySelector('.dropzone').classList.add('null');
-      rowId.querySelector('.dropzone .drag-info').classList.replace('flex-row', 'flex-column');
-      rowId.querySelector('.dropzone .drag-info .drop-icon').style.animation =
+  if (currentRowElement.querySelector('.dropzone .row-content').children.length === 0) {
+    if (currentRowElement.getAttribute('id') === 'row1') {
+      currentRowElement.querySelector('.dropzone .row-content').remove();
+      currentRowElement.querySelector('.dropzone').classList.add('null');
+      currentRowElement
+        .querySelector('.dropzone .drag-info')
+        .classList.replace('flex-row', 'flex-column');
+      currentRowElement.querySelector('.dropzone .drag-info .drop-icon').style.animation =
         'dropzoneIconAnimated 2s infinite ease-in-out';
       if (
         !document
-          .getElementById(`${rowId.getAttribute('id')}-clearRowBtn`)
+          .getElementById(`${currentRowElement.getAttribute('id')}-clearRowBtn`)
           .classList.contains('disabled')
       ) {
         document
-          .getElementById(`${rowId.getAttribute('id')}-clearRowBtn`)
+          .getElementById(`${currentRowElement.getAttribute('id')}-clearRowBtn`)
           .classList.add('disabled');
       }
-    } else rowId.remove();
+    } else currentRowElement.remove();
   }
 }
-
+// Click the delete all row button to clear the entire current row.
+// Note: If the line number is not 1, it will completely remove the line.
 function clearRow(rowId) {
-  if (rowId.getAttribute('id') === 'row1') {
-    if (rowId.querySelector('.dropzone .row-content')) {
-      if (rowId.querySelector('.dropzone .row-content').children.length > 0) {
-        rowId.querySelector('.dropzone .row-content').remove();
-        rowId.querySelector('.dropzone').classList.add('null');
-        rowId.querySelector('.dropzone .drag-info').classList.replace('flex-row', 'flex-column');
-        rowId.querySelector('.dropzone .drag-info .drop-icon').style.animation =
+  const currentRowElement = rowId;
+  if (currentRowElement.getAttribute('id') === 'row1') {
+    if (currentRowElement.querySelector('.dropzone .row-content')) {
+      if (currentRowElement.querySelector('.dropzone .row-content').children.length > 0) {
+        currentRowElement.querySelector('.dropzone .row-content').remove();
+        currentRowElement.querySelector('.dropzone').classList.add('null');
+        currentRowElement
+          .querySelector('.dropzone .drag-info')
+          .classList.replace('flex-row', 'flex-column');
+        currentRowElement.querySelector('.dropzone .drag-info .drop-icon').style.animation =
           'dropzoneIconAnimated 2s infinite ease-in-out';
         if (
           !document
@@ -333,7 +329,7 @@ function clearRow(rowId) {
     }
   } else rowId.remove();
 }
-
+// You can add form elements by clicking the + signs in the sidebar instead of drag and drop.
 function addFormElement(type) {
   if (document.querySelector('.main-content').children.length <= 2) {
     addRowContent('row1', type);
@@ -355,10 +351,16 @@ function addFormElement(type) {
     }
   }
 }
-
+// You can open or close the menu by clicking the menu icon that appears in mobile and tablet view.
 document.getElementById('menu-burger').addEventListener('click', () => {
   document.querySelector('.panel-body').classList.toggle('d-none');
   if (document.getElementById('menu-burger').textContent === 'menu') {
     document.getElementById('menu-burger').textContent = 'close';
   } else document.getElementById('menu-burger').textContent = 'menu';
 });
+// Since the scritp file type is module, it is necessary to define the functions in the window.
+window.editInput = editInput;
+window.editElement = editElement;
+window.deleteElement = deleteElement;
+window.clearRow = clearRow;
+window.addFormElement = addFormElement;
