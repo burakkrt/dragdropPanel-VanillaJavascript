@@ -7,6 +7,9 @@ const elements = document.querySelectorAll('.row-element');
 // Local veriables
 let dragtype;
 
+window.editInput = editInput;
+window.editElement = editElement;
+
 export function jquerySortable(rowid) {
   $(`#${rowid} .row-content`).sortable({
     placeholder: 'ui-state-highlight',
@@ -20,6 +23,7 @@ export function addRowContent(rowid, formElementType) {
     dropzone.insertAdjacentHTML(
       'afterbegin',
       `<div class="row-content d-flex flex-column gap-2 mb-3"> ${getFormHtmlElement(
+        rowid,
         formElementType,
       )} </div>`,
     );
@@ -29,7 +33,7 @@ export function addRowContent(rowid, formElementType) {
   } else {
     dropzone
       .querySelector('.row-content')
-      .insertAdjacentHTML('beforeend', getFormHtmlElement(formElementType));
+      .insertAdjacentHTML('beforeend', getFormHtmlElement(rowid, formElementType));
   }
 }
 
@@ -97,5 +101,155 @@ document.getElementById('addRow').addEventListener('click', () => {
   });
 });
 
+function editElement(id, type) {
+  function closeModal() {
+    document.getElementById('closeModalButton').click();
+  }
+  if (type === 'checkbox') {
+    const newValue = document.getElementById('newValue');
+    if (newValue.value !== '') {
+      document.getElementById(id).value = newValue.value;
+      closeModal();
+    } else if (!newValue.classList.contains('is-invalid')) {
+      newValue.classList.add('is-invalid');
+    }
+  }
+  if (type === 'selectlist') {
+    if (document.getElementById(`${id}-newListname`).value !== '') {
+      document.getElementById(`${id}-listname`).textContent = document.getElementById(
+        `${id}-newListname`,
+      ).value;
+    }
+    if (document.getElementById(`${id}-newSelect1`).value !== '') {
+      document.getElementById(`${id}-select1`).textContent = document.getElementById(
+        `${id}-newSelect1`,
+      ).value;
+      document.getElementById(`${id}-select1`).value = document.getElementById(
+        `${id}-newSelect1`,
+      ).value;
+    }
+    if (document.getElementById(`${id}-newSelect2`).value !== '') {
+      document.getElementById(`${id}-select2`).textContent = document.getElementById(
+        `${id}-newSelect2`,
+      ).value;
+      document.getElementById(`${id}-select2`).value = document.getElementById(
+        `${id}-newSelect2`,
+      ).value;
+    }
+    if (document.getElementById(`${id}-newSelect3`).value !== '') {
+      document.getElementById(`${id}-select3`).textContent = document.getElementById(
+        `${id}-newSelect3`,
+      ).value;
+      document.getElementById(`${id}-select3`).value = document.getElementById(
+        `${id}-newSelect3`,
+      ).value;
+    }
+    closeModal();
+  }
+  if (type === 'textarea') {
+    if (document.getElementById(`${id}-newTextareaLabel`).value !== '') {
+      document.getElementById(`${id}-textareaLabel`).textContent = document.getElementById(
+        `${id}-newTextareaLabel`,
+      ).value;
+      closeModal();
+    } else if (
+      !document.getElementById(`${id}-newTextareaLabel`).classList.contains('is-invalid')
+    ) {
+      document.getElementById(`${id}-newTextareaLabel`).classList.add('is-invalid');
+    }
+  }
+  if (type === 'input') {
+    if (document.getElementById(`${id}-newInputLabel`).value !== '') {
+      document.getElementById(`${id}-inputLabel`).textContent = document.getElementById(
+        `${id}-newInputLabel`,
+      ).value;
+      closeModal();
+    } else if (!document.getElementById(`${id}-newInputLabel`).classList.contains('is-invalid')) {
+      document.getElementById(`${id}-newInputLabel`).classList.add('is-invalid');
+    }
+  }
+}
+
+export function editInput(id, rowid, type) {
+  const modalFormElement = document.getElementById('modalFormElements');
+  const chanceButton = document.getElementById('chanceButton');
+  const modalTitle = document.getElementById('modalTitle');
+  function modalOpen() {
+    document.getElementById('modalOpenButton').click();
+  }
+
+  if (type === 'checkbox') {
+    const modalElements = `
+    <div class="mb-3">
+      <label for="newValue" class="col-form-label">Checkbox value :</label>
+      <input type="text" class="form-control" id="newValue">
+    </div>
+    `;
+    modalFormElement.innerHTML = modalElements;
+
+    chanceButton.setAttribute('onclick', `editElement(${id},"${type}")`);
+    modalTitle.textContent = `${
+      rowid.querySelector('.row-element-header h5').textContent
+    } > Edit Checkbox Value`;
+    modalOpen();
+  }
+  if (type === 'selectlist') {
+    const modalElements = `
+    <div class="mb-3">
+      <label for="${id}-newListname" class="col-form-label">Selectlist Name :</label>
+      <input type="text" class="form-control" id="${id}-newListname">
+    </div>
+    <div class="mb-3">
+      <label for="${id}-newSelect1" class="col-form-label">- Select Item 1 :</label>
+      <input type="text" class="form-control" id="${id}-newSelect1">
+    </div>
+    <div class="mb-3">
+      <label for="${id}-newSelect2" class="col-form-label">- Select Item 2 :</label>
+      <input type="text" class="form-control" id="${id}-newSelect2">
+    </div>
+    <div class="mb-3">
+      <label for="${id}-newSelect3" class="col-form-label">- Select Item 3 :</label>
+      <input type="text" class="form-control" id="${id}-newSelect3">
+    </div>
+    `;
+    modalFormElement.innerHTML = modalElements;
+    chanceButton.setAttribute('onclick', `editElement(${id},"${type}")`);
+    modalTitle.textContent = `${
+      rowid.querySelector('.row-element-header h5').textContent
+    } > Edit Selectlist Values`;
+    modalOpen();
+  }
+  if (type === 'textarea') {
+    const modalElements = `
+    <div class="mb-3">
+      <label for="${id}-newTextareaLabel" class="col-form-label">Textarea Label :</label>
+      <input type="text" class="form-control" id="${id}-newTextareaLabel">
+    </div>
+    `;
+    modalFormElement.innerHTML = modalElements;
+    chanceButton.setAttribute('onclick', `editElement(${id},"${type}")`);
+    modalTitle.textContent = `${
+      rowid.querySelector('.row-element-header h5').textContent
+    } > Edit Textarea Label`;
+    modalOpen();
+  }
+  if (type === 'input') {
+    const modalElements = `
+    <div class="mb-3">
+      <label for="${id}-newInputLabel" class="col-form-label">Input Label :</label>
+      <input type="text" class="form-control" id="${id}-newInputLabel">
+    </div>
+    `;
+    modalFormElement.innerHTML = modalElements;
+    chanceButton.setAttribute('onclick', `editElement(${id},"${type}")`);
+    modalTitle.textContent = `${
+      rowid.querySelector('.row-element-header h5').textContent
+    } > Edit Input Label`;
+    modalOpen();
+  }
+}
+
 // OPTIMIZE:Bazen form elementlerinin sortable ile yerini
 //  değiştirdiğinde takılamlar oluşuyor ona çözüm bul.
+
+// TODO: formElement lerdeki id leri ayarla.
