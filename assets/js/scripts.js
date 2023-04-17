@@ -11,6 +11,7 @@ window.editInput = editInput;
 window.editElement = editElement;
 window.deleteElement = deleteElement;
 window.clearRow = clearRow;
+window.addFormElement = addFormElement;
 
 export function jquerySortable(rowid) {
   $(`#${rowid} .row-content`).sortable({
@@ -297,6 +298,22 @@ function clearRow(rowId) {
       }
     }
   } else rowId.remove();
+}
+
+function addFormElement(type) {
+  if (document.querySelector('.main-content').children.length <= 2) {
+    addRowContent('row1', type);
+    jquerySortable('row1');
+  }
+  if (document.querySelector('.main-content').children.length > 2) {
+    const row =
+      document.querySelector('.main-content').children[
+        document.querySelector('.main-content').children.length - 2
+      ];
+    const rowId = row.getAttribute('id');
+    addRowContent(rowId, type);
+    jquerySortable(rowId);
+  }
 }
 
 // OPTIMIZE:Bazen form elementlerinin sortable ile yerini

@@ -22,30 +22,35 @@
       <div class="panel-header">
         <h1 class="fs-4 text-uppercase">Drag&Drop Panel</h1>
       </div>
-      <div class="panel-body d-flex flex-column gap-2 mt-5">
-        <div class="draggable cursor-pointer bg-warning p-2 rounded-2" draggable="true" id="input">
-          <span>Input</span>
+      <div class="panel-body d-flex flex-column gap-3 mt-5">
+        <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="input">
+          <span class="bg-warning flex-grow-1 p-2 rounded-start-2" draggable="true">Input</span>
+          <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('input')" >Add</button>
         </div>
-        <div
-          class="draggable cursor-pointer bg-warning p-2 rounded-2"
-          draggable="true"
-          id="textarea"
-        >
-          <span>Textarea</span>
+        <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="textarea">
+          <span class="bg-warning flex-grow-1 p-2 rounded-start-2" draggable="true">Textarea</span>
+          <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('textarea')" >Add</button>
         </div>
-        <div
-          class="draggable cursor-pointer bg-warning p-2 rounded-2"
-          draggable="true"
-          id="selectlist"
-        >
-          <span>Selectlist</span>
+        <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="selectlist">
+          <span class="bg-warning flex-grow-1 p-2 rounded-start-2" draggable="true">Selectlist</span>
+          <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('selectlist')" >Add</button>
         </div>
-        <div
-          class="draggable cursor-pointer bg-warning p-2 rounded-2"
-          draggable="true"
-          id="checkbox"
-        >
-          <span>Checkbox</span>
+        <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="checkbox">
+          <span class="bg-warning flex-grow-1 p-2 rounded-start-2" draggable="true">Checkbox</span>
+          <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('checkbox')" >Add</button>
+        </div>
+        <div class="draggable d-flex flex-column cursor-move" id="boxgroup1" draggable="true">
+          <span class="bg-warning p-2 rounded-top-2">Box Group 1</span>
+          <span class="bg-warning p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Checkbox</span>
+          <span class="bg-warning p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Selectlist</span>
+          <button class="btn btn-outline-secondary rounded-top-0 w-100 d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('boxgroup1')" >Add</button>
+        </div>
+        <div class="draggable d-flex flex-column cursor-move" id="boxgroup2" draggable="true">
+          <span class="bg-warning p-2 rounded-top-2">Box Group 2</span>
+          <span class="bg-warning p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Input</span>
+          <span class="bg-warning p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Textarea</span>
+          <span class="bg-warning p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Selectlist</span>
+          <button class="btn btn-outline-secondary rounded-top-0 w-100 d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('boxgroup2')" >Add</button>
         </div>
       </div>
     </div>
