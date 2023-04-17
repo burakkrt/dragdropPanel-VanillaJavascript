@@ -15,7 +15,7 @@ export default function getFormHtmlElement(rowid, formElementType) {
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
           <span class="material-symbols-outlined">delete</span>
         </span>
-        <span class="input-group-text cursor-move" draggable="true">
+        <span class="input-group-text move-span cursor-move" draggable="true">
           <span class="material-symbols-outlined" >drag_indicator</span>
         </span>
       </div>
@@ -34,7 +34,7 @@ export default function getFormHtmlElement(rowid, formElementType) {
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
           <span class="material-symbols-outlined">delete</span>
         </span>
-        <span class="input-group-text cursor-move" draggable="true">
+        <span class="input-group-text move-span cursor-move" draggable="true">
           <span class="material-symbols-outlined">drag_indicator</span>
         </span>
       </div>
@@ -58,7 +58,7 @@ export default function getFormHtmlElement(rowid, formElementType) {
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
           <span class="material-symbols-outlined">delete</span>
         </span>
-        <span class="input-group-text cursor-move" draggable="true">
+        <span class="input-group-text move-span cursor-move" draggable="true">
           <span class="material-symbols-outlined">drag_indicator</span>
         </span>
       </div>
@@ -77,7 +77,7 @@ export default function getFormHtmlElement(rowid, formElementType) {
       <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
           <span class="material-symbols-outlined">delete</span>
       </span>
-      <span class="input-group-text cursor-move" draggable="true">
+      <span class="input-group-text move-span cursor-move" draggable="true">
           <span class="material-symbols-outlined">drag_indicator</span>
       </span>
     </div>
@@ -96,7 +96,7 @@ export default function getFormHtmlElement(rowid, formElementType) {
       <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
           <span class="material-symbols-outlined">delete</span>
       </span>
-      <span class="input-group-text cursor-move" draggable="true">
+      <span class="input-group-text move-span cursor-move" draggable="true">
           <span class="material-symbols-outlined">drag_indicator</span>
       </span>
     </div>
@@ -116,7 +116,7 @@ export default function getFormHtmlElement(rowid, formElementType) {
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
           <span class="material-symbols-outlined">delete</span>
         </span>
-        <span class="input-group-text cursor-move" draggable="true">
+        <span class="input-group-text move-span cursor-move" draggable="true">
           <span class="material-symbols-outlined">drag_indicator</span>
         </span>
       </div>
@@ -135,7 +135,7 @@ export default function getFormHtmlElement(rowid, formElementType) {
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
           <span class="material-symbols-outlined">delete</span>
         </span>
-        <span class="input-group-text cursor-move" draggable="true">
+        <span class="input-group-text move-span cursor-move" draggable="true">
           <span class="material-symbols-outlined" >drag_indicator</span>
         </span>
       </div>
@@ -150,7 +150,7 @@ export default function getFormHtmlElement(rowid, formElementType) {
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
           <span class="material-symbols-outlined">delete</span>
         </span>
-        <span class="input-group-text cursor-move" draggable="true">
+        <span class="input-group-text move-span cursor-move" draggable="true">
           <span class="material-symbols-outlined">drag_indicator</span>
         </span>
       </div>
@@ -170,7 +170,7 @@ export default function getFormHtmlElement(rowid, formElementType) {
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
           <span class="material-symbols-outlined">delete</span>
         </span>
-        <span class="input-group-text cursor-move" draggable="true">
+        <span class="input-group-text move-span cursor-move" draggable="true">
           <span class="material-symbols-outlined">drag_indicator</span>
         </span>
       </div>

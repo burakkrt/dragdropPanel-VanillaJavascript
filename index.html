@@ -18,11 +18,14 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
   </head>
   <body>
-    <div class="sidebar position-fixed z-3 h-100 p-3 bg-body-secondary">
+    <div class="sidebar position-fixed z-3 p-3 bg-body-secondary" id="sidebar">
       <div class="panel-header">
-        <h1 class="fs-4 text-uppercase">Drag&Drop Panel</h1>
+        <div class="d-flex flex-row justify-content-between">
+          <h1 class="fs-4 text-uppercase">Drag&Drop Panel</h1>
+          <span class="material-symbols-outlined cursor-pointer" id="menu-burger">menu</span>
+        </div>
       </div>
-      <div class="panel-body d-flex flex-column gap-3 mt-5">
+      <div class="panel-body d-none d-flex flex-column gap-3 mt-5">
         <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="input">
           <span class="bg-warning flex-grow-1 p-2 rounded-start-2" draggable="true">Input</span>
           <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('input')" >Add</button>
@@ -62,7 +65,7 @@
             <button class="btn btn-sm btn-danger d-flex flex-row align-items-center justify-content-center gap-1 disabled" onclick="clearRow(row1)" id="row1-clearRowBtn"><span class="material-symbols-outlined">delete_sweep</span>All row delete</button>
           </div>
         </div>
-        <div class="dropzone null flex-grow-1 w-75 p-4 rounded-4 mx-auto">
+        <div class="dropzone null flex-grow-1 w-100 p-0 p-md-2 p-xl-4 rounded-4 mx-auto">
           <div
             class="drag-info d-flex flex-column align-items-center justify-content-center row-gap-3 column-gap-1 pe-none"
           >
@@ -82,7 +85,7 @@
         </button>
       </div>
     </div>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" id="modalOpenButton">Open modal for @getbootstrap</button>
+    <button type="button" class="btn btn-primary visually-hidden" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" id="modalOpenButton"></button>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">

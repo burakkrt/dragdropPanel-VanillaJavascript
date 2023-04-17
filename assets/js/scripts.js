@@ -25,7 +25,7 @@ export function addRowContent(rowid, formElementType) {
   if (dropzone.classList.contains('null')) {
     dropzone.insertAdjacentHTML(
       'afterbegin',
-      `<div class="row-content d-flex flex-column gap-2 mb-3"> ${getFormHtmlElement(
+      `<div class="row-content d-flex flex-column gap-3 gap-md-2 mb-3"> ${getFormHtmlElement(
         rowid,
         formElementType,
       )} </div>`,
@@ -304,6 +304,9 @@ function addFormElement(type) {
   if (document.querySelector('.main-content').children.length <= 2) {
     addRowContent('row1', type);
     jquerySortable('row1');
+    if (document.getElementById('menu-burger')) {
+      document.getElementById('menu-burger').click();
+    }
   }
   if (document.querySelector('.main-content').children.length > 2) {
     const row =
@@ -313,8 +316,18 @@ function addFormElement(type) {
     const rowId = row.getAttribute('id');
     addRowContent(rowId, type);
     jquerySortable(rowId);
+    if (document.getElementById('menu-burger')) {
+      document.getElementById('menu-burger').click();
+    }
   }
 }
+
+document.getElementById('menu-burger').addEventListener('click', () => {
+  document.querySelector('.panel-body').classList.toggle('d-none');
+  if (document.getElementById('menu-burger').textContent === 'menu') {
+    document.getElementById('menu-burger').textContent = 'close';
+  } else document.getElementById('menu-burger').textContent = 'menu';
+});
 
 // OPTIMIZE:Bazen form elementlerinin sortable ile yerini
 //  değiştirdiğinde takılamlar oluşuyor ona çözüm bul.
