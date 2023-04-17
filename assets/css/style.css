@@ -126,6 +126,7 @@ body {
   .sidebar {
     width: 30%;
     height: 100%;
+    position: fixed!important;
   }
   .sidebar .panel-body{
     display: flex!important;
