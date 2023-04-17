@@ -18,41 +18,44 @@
     <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
   </head>
   <body>
-    <div class="sidebar position-fixed z-3 p-3 bg-body-secondary" id="sidebar">
+    <div class="sidebar position-fixed z-3 p-3" id="sidebar">
       <div class="panel-header">
         <div class="d-flex flex-row justify-content-between">
-          <h1 class="fs-4 text-uppercase">Drag&Drop Panel</h1>
+          <div class="mx-auto text-center">
+          <img src="assets/img/logo.png" alt="testpine">
+            <p class="fs-6 d-inline-block ms-2 d-sm-block my-sm-2 ms-sm-0" style="color: #57C5B6">Drag & Drop Panel</p>
+          </div>
           <span class="material-symbols-outlined cursor-pointer" id="menu-burger">menu</span>
         </div>
       </div>
       <div class="panel-body d-none d-flex flex-column gap-3 mt-5">
         <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="input">
-          <span class="bg-warning flex-grow-1 p-2 rounded-start-2" draggable="true">Input</span>
+          <span class="draggable-text flex-grow-1 p-2 rounded-start-2" draggable="true">Input</span>
           <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('input')" >Add</button>
         </div>
         <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="textarea">
-          <span class="bg-warning flex-grow-1 p-2 rounded-start-2" draggable="true">Textarea</span>
+          <span class="draggable-text flex-grow-1 p-2 rounded-start-2" draggable="true">Textarea</span>
           <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('textarea')" >Add</button>
         </div>
         <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="selectlist">
-          <span class="bg-warning flex-grow-1 p-2 rounded-start-2" draggable="true">Selectlist</span>
+          <span class="draggable-text flex-grow-1 p-2 rounded-start-2" draggable="true">Selectlist</span>
           <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('selectlist')" >Add</button>
         </div>
         <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="checkbox">
-          <span class="bg-warning flex-grow-1 p-2 rounded-start-2" draggable="true">Checkbox</span>
+          <span class="draggable-text flex-grow-1 p-2 rounded-start-2" draggable="true">Checkbox</span>
           <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('checkbox')" >Add</button>
         </div>
         <div class="draggable d-flex flex-column cursor-move" id="boxgroup1" draggable="true">
-          <span class="bg-warning p-2 rounded-top-2">Box Group 1</span>
-          <span class="bg-warning p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Checkbox</span>
-          <span class="bg-warning p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Selectlist</span>
+          <span class="draggable-text p-2 rounded-top-2">Box Group 1</span>
+          <span class="draggable-subtext p-2 d-flex align-items-center" style=""><span class="material-symbols-outlined">chevron_right</span>Checkbox</span>
+          <span class="draggable-subtext p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Selectlist</span>
           <button class="btn btn-outline-secondary rounded-top-0 w-100 d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('boxgroup1')" >Add</button>
         </div>
         <div class="draggable d-flex flex-column cursor-move" id="boxgroup2" draggable="true">
-          <span class="bg-warning p-2 rounded-top-2">Box Group 2</span>
-          <span class="bg-warning p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Input</span>
-          <span class="bg-warning p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Textarea</span>
-          <span class="bg-warning p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Selectlist</span>
+          <span class="draggable-text p-2 rounded-top-2">Box Group 2</span>
+          <span class="draggable-subtext p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Input</span>
+          <span class="draggable-subtext p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Textarea</span>
+          <span class="draggable-subtext p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Selectlist</span>
           <button class="btn btn-outline-secondary rounded-top-0 w-100 d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('boxgroup2')" >Add</button>
         </div>
       </div>

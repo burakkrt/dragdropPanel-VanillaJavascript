@@ -76,7 +76,7 @@ document.getElementById('addRow').addEventListener('click', () => {
           <button class="btn btn-sm btn-danger d-flex flex-row align-items-center justify-content-center gap-1 disabled" onclick="clearRow(${newId})" id="${newId}-clearRowBtn"><span class="material-symbols-outlined">delete_sweep</span>All row delete</button>
         </div>
       </div>
-      <div class="dropzone null flex-grow-1 w-75 p-4 rounded-4 mx-auto">
+      <div class="dropzone null flex-grow-1 w-100 p-0 p-md-2 p-xl-4 rounded-4 mx-auto">
         <div
           class="drag-info d-flex flex-column align-items-center justify-content-center row-gap-3 column-gap-1 pe-none"
         >
@@ -328,10 +328,3 @@ document.getElementById('menu-burger').addEventListener('click', () => {
     document.getElementById('menu-burger').textContent = 'close';
   } else document.getElementById('menu-burger').textContent = 'menu';
 });
-
-// OPTIMIZE:Bazen form elementlerinin sortable ile yerini
-//  değiştirdiğinde takılamlar oluşuyor ona çözüm bul.
-
-// TODO: formElement lerdeki id leri ayarla.
-
-// TODO: html 'deki modal 'ın içeriği temizlenecek (idler ve bootsttrapdan kalanlar)
