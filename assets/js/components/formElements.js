@@ -10,13 +10,13 @@ export default function getFormHtmlElement(rowid, formElementType) {
           <label for="floatingInputGroup1" id="${randomId}-inputLabel">Input</label>
         </div>
         <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'input')">
-          <span class="material-symbols-outlined">edit_note</span>
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
         </span>
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
-          <span class="material-symbols-outlined">delete</span>
+          <span class="material-symbols-outlined delete-icon">delete</span>
         </span>
         <span class="input-group-text move-span cursor-move" draggable="true">
-          <span class="material-symbols-outlined" >drag_indicator</span>
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
         </span>
       </div>
     `;
@@ -29,13 +29,13 @@ export default function getFormHtmlElement(rowid, formElementType) {
           <label for="floatingTextarea" id="${randomId}-textareaLabel">Textarea</label>
         </div>
         <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'textarea')">
-          <span class="material-symbols-outlined">edit_note</span>
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
         </span>
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
-          <span class="material-symbols-outlined">delete</span>
+          <span class="material-symbols-outlined delete-icon">delete</span>
         </span>
         <span class="input-group-text move-span cursor-move" draggable="true">
-          <span class="material-symbols-outlined">drag_indicator</span>
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
         </span>
       </div>
     `;
@@ -53,13 +53,13 @@ export default function getFormHtmlElement(rowid, formElementType) {
           <label for="floatingSelect" id="${randomId}-listname">Select List Name</label>
         </div>
         <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'selectlist')">
-          <span class="material-symbols-outlined">edit_note</span>
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
         </span>
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
-          <span class="material-symbols-outlined">delete</span>
+          <span class="material-symbols-outlined delete-icon">delete</span>
         </span>
         <span class="input-group-text move-span cursor-move" draggable="true">
-          <span class="material-symbols-outlined">drag_indicator</span>
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
         </span>
       </div>
     `;
@@ -72,13 +72,13 @@ export default function getFormHtmlElement(rowid, formElementType) {
       </div>
       <input type="text" class="form-control bg-white" aria-label="Did you drink water?" value="Did you drink water?" disabled id="${randomId}">
       <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'checkbox')">
-          <span class="material-symbols-outlined">edit_note</span>
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
       </span>
       <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
-          <span class="material-symbols-outlined">delete</span>
+          <span class="material-symbols-outlined delete-icon">delete</span>
       </span>
       <span class="input-group-text move-span cursor-move" draggable="true">
-          <span class="material-symbols-outlined">drag_indicator</span>
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
       </span>
     </div>
     `;
@@ -91,13 +91,13 @@ export default function getFormHtmlElement(rowid, formElementType) {
       </div>
       <input type="text" class="form-control bg-white" aria-label="Did you drink water?" value="Did you drink water?" disabled id="${randomId}">
       <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'checkbox')">
-          <span class="material-symbols-outlined">edit_note</span>
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
       </span>
       <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
-          <span class="material-symbols-outlined">delete</span>
+          <span class="material-symbols-outlined delete-icon">delete</span>
       </span>
       <span class="input-group-text move-span cursor-move" draggable="true">
-          <span class="material-symbols-outlined">drag_indicator</span>
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
       </span>
     </div>
     <div class="input-group" >
@@ -111,13 +111,13 @@ export default function getFormHtmlElement(rowid, formElementType) {
           <label for="floatingSelect" id="${randomId}-listname">Select List Name</label>
         </div>
         <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'selectlist')">
-          <span class="material-symbols-outlined">edit_note</span>
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
         </span>
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
-          <span class="material-symbols-outlined">delete</span>
+          <span class="material-symbols-outlined delete-icon">delete</span>
         </span>
         <span class="input-group-text move-span cursor-move" draggable="true">
-          <span class="material-symbols-outlined">drag_indicator</span>
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
         </span>
       </div>
     `;
@@ -130,13 +130,13 @@ export default function getFormHtmlElement(rowid, formElementType) {
           <label for="floatingInputGroup1" id="${randomId}-inputLabel">Input</label>
         </div>
         <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'input')">
-          <span class="material-symbols-outlined">edit_note</span>
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
         </span>
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
-          <span class="material-symbols-outlined">delete</span>
+          <span class="material-symbols-outlined delete-icon">delete</span>
         </span>
         <span class="input-group-text move-span cursor-move" draggable="true">
-          <span class="material-symbols-outlined" >drag_indicator</span>
+          <span class="material-symbols-outlined move-icon" >drag_indicator</span>
         </span>
       </div>
       <div class="input-group" >
@@ -145,13 +145,13 @@ export default function getFormHtmlElement(rowid, formElementType) {
           <label for="floatingTextarea" id="${randomId}-textareaLabel">Textarea</label>
         </div>
         <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'textarea')">
-          <span class="material-symbols-outlined">edit_note</span>
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
         </span>
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
-          <span class="material-symbols-outlined">delete</span>
+          <span class="material-symbols-outlined delete-icon">delete</span>
         </span>
         <span class="input-group-text move-span cursor-move" draggable="true">
-          <span class="material-symbols-outlined">drag_indicator</span>
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
         </span>
       </div>
       <div class="input-group" >
@@ -165,13 +165,13 @@ export default function getFormHtmlElement(rowid, formElementType) {
           <label for="floatingSelect" id="${randomId}-listname">Select List Name</label>
         </div>
         <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'selectlist')">
-          <span class="material-symbols-outlined">edit_note</span>
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
         </span>
         <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
-          <span class="material-symbols-outlined">delete</span>
+          <span class="material-symbols-outlined delete-icon">delete</span>
         </span>
         <span class="input-group-text move-span cursor-move" draggable="true">
-          <span class="material-symbols-outlined">drag_indicator</span>
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
         </span>
       </div>
     `;

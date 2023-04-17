@@ -82,14 +82,14 @@ document.getElementById('addRow').addEventListener('click', () => {
   const rowElement = `
     <div class="row-element d-flex flex-column gap-3 p-3 pb-5 rounded-3 mb-3" id="${newId}">
       <div class="row-element-header">
-        <div class="d-flex flex-row justify-content-between align-items-center">
+        <div class="d-flex flex-row justify-content-between align-items-center text-secondary">
           <h5>Row ${rowCount}</h5>
           <button class="btn btn-sm btn-danger d-flex flex-row align-items-center justify-content-center gap-1 disabled" onclick="clearRow(${newId})" id="${newId}-clearRowBtn"><span class="material-symbols-outlined">delete_sweep</span>All row delete</button>
         </div>
       </div>
       <div class="dropzone null flex-grow-1 w-100 p-0 p-md-2 p-xl-4 rounded-4 mx-auto">
         <div
-          class="drag-info d-flex flex-column align-items-center justify-content-center row-gap-3 column-gap-1 pe-none"
+          class="drag-info d-flex flex-column align-items-center justify-content-center row-gap-3 column-gap-1 pe-none text-secondary"
         >
           <span
             class="drop-icon material-symbols-outlined"
