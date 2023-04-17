@@ -1,31 +1,98 @@
 body {
   font-family: 'Roboto', sans-serif;
+  background-color: #F9F7F7;
 }
 
 .sidebar {
   left: 0;
   top: 0;
   width: 20%;
-  background-color: #e3f5f1;
-  box-shadow: 3px 0 10px rgba(0,0,0,0.2);
+  background-color: #F6F6F6;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  border: 2px solid #d5d5d5;
+}
+
+.main-content {
+  margin-left: 20%;
+}
+
+.row-element {
+  min-height: 170px;
+  /*background-color: #f1eded;*/
+  border: 2px solid #d5d5d5;
+}
+
+.dropzone {
+  transition-duration: 300ms;
+}
+
+.dropzone .drop-icon {
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .draggable-text{
   color: white;
-  background-color:#577D86;
+  background-color: #a6a6a6;
 }
 
 .draggable-subtext{
   color: white;
-  background-color: rgba(87,125,134,0.87);
+  background-color: #bbbbbb;
+}
+
+.bg-button{
+  color: white!important;
+  background-color: #a6a6a6!important;
+  transition-duration: 200ms;
+}
+
+.bg-button:hover{
+  background-color: #808080 !important;
+}
+
+.sidebar-button{
+  color:#808080!important;
+  border: 1px solid #808080;
+  transition-duration: 300ms;
+}
+
+.sidebar-button:hover{
+  color: white!important;
+  background-color: #808080 !important;
 }
 
 .input-group-text.move-span{
   display: none;
 }
 
-.main-content {
-  margin-left: 20%;
+.cursor-move {
+  cursor: move;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.ui-state-highlight {
+  height: 5.5em;
+  line-height: 1.2em;
+  border: 1px dashed grey;
+  border-radius: 5px;
+  background-color: rgba(152, 216, 170, 0.44);
+}
+
+@keyframes dropzoneIconAnimated {
+  0% {
+    top: -5px;
+  }
+  50% {
+    top: 5px;
+  }
+  100% {
+    top: -5px;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -47,7 +114,8 @@ body {
     margin-top: 110px;
   }
   .dropzone{
-    background-color: #f0f0f0;
+    /*background-color: #f0f0f0;*/
+    outline: 1px dashed grey;
   }
   .input-group-text.move-span{
     display: flex;
@@ -84,49 +152,4 @@ body {
   .dropzone{
     width: 70%!important;
   }
-}
-
-.row-element {
-  min-height: 170px;
-  border: 1px dashed black;
-}
-
-.cursor-move {
-  cursor: move;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.draggable {
-}
-
-.dropzone {
-
-}
-
-.dropzone .drop-icon {
-  position: relative;
-  top: 0;
-  left: 0;
-}
-
-@keyframes dropzoneIconAnimated {
-  0% {
-    top: -5px;
-  }
-  50% {
-    top: 5px;
-  }
-  100% {
-    top: -5px;
-  }
-}
-
-.ui-state-highlight {
-  height: 5.5em;
-  line-height: 1.2em;
-  border: 1px dashed black;
-  border-radius: 5px;
 }

@@ -31,46 +31,46 @@
       <div class="panel-body d-none d-flex flex-column gap-3 mt-5">
         <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="input">
           <span class="draggable-text flex-grow-1 p-2 rounded-start-2" draggable="true">Input</span>
-          <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('input')" >Add</button>
+          <button class="btn sidebar-button d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('input')" ><span class="material-symbols-outlined">add</span></button>
         </div>
         <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="textarea">
           <span class="draggable-text flex-grow-1 p-2 rounded-start-2" draggable="true">Textarea</span>
-          <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('textarea')" >Add</button>
+          <button class="btn sidebar-button d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('textarea')" ><span class="material-symbols-outlined">add</span></button>
         </div>
         <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="selectlist">
           <span class="draggable-text flex-grow-1 p-2 rounded-start-2" draggable="true">Selectlist</span>
-          <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('selectlist')" >Add</button>
+          <button class="btn sidebar-button d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('selectlist')" ><span class="material-symbols-outlined">add</span></button>
         </div>
         <div class="draggable input-group d-flex flex-row justify-content-between cursor-move" id="checkbox">
           <span class="draggable-text flex-grow-1 p-2 rounded-start-2" draggable="true">Checkbox</span>
-          <button class="btn btn-outline-secondary d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('checkbox')" >Add</button>
+          <button class="btn sidebar-button d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('checkbox')" ><span class="material-symbols-outlined">add</span></button>
         </div>
         <div class="draggable d-flex flex-column cursor-move" id="boxgroup1" draggable="true">
           <span class="draggable-text p-2 rounded-top-2">Box Group 1</span>
           <span class="draggable-subtext p-2 d-flex align-items-center" style=""><span class="material-symbols-outlined">chevron_right</span>Checkbox</span>
           <span class="draggable-subtext p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Selectlist</span>
-          <button class="btn btn-outline-secondary rounded-top-0 w-100 d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('boxgroup1')" >Add</button>
+          <button class="btn sidebar-button rounded-top-0 w-100 d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('boxgroup1')" ><span class="material-symbols-outlined">add</span></button>
         </div>
         <div class="draggable d-flex flex-column cursor-move" id="boxgroup2" draggable="true">
           <span class="draggable-text p-2 rounded-top-2">Box Group 2</span>
           <span class="draggable-subtext p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Input</span>
           <span class="draggable-subtext p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Textarea</span>
           <span class="draggable-subtext p-2 d-flex align-items-center"><span class="material-symbols-outlined">chevron_right</span>Selectlist</span>
-          <button class="btn btn-outline-secondary rounded-top-0 w-100 d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('boxgroup2')" >Add</button>
+          <button class="btn sidebar-button rounded-top-0 w-100 d-flex flex-row align-items-center justify-content-center gap-1" type="button" onclick="addFormElement('boxgroup2')" ><span class="material-symbols-outlined">add</span></button>
         </div>
       </div>
     </div>
     <div class="main-content p-3">
-      <div class="row-element d-flex flex-column gap-3 p-3 rounded-3 mb-3 " id="row1">
+      <div class="row-element d-flex flex-column gap-3 p-3 pb-5 rounded-3 mb-3" id="row1">
         <div class="row-element-header">
-          <div class="d-flex flex-row justify-content-between align-items-center">
+          <div class="d-flex flex-row justify-content-between align-items-center text-secondary">
             <h5>Row 1</h5>
             <button class="btn btn-sm btn-danger d-flex flex-row align-items-center justify-content-center gap-1 disabled" onclick="clearRow(row1)" id="row1-clearRowBtn"><span class="material-symbols-outlined">delete_sweep</span>All row delete</button>
           </div>
         </div>
         <div class="dropzone null flex-grow-1 w-100 p-0 p-md-2 p-xl-4 rounded-4 mx-auto">
           <div
-            class="drag-info d-flex flex-column align-items-center justify-content-center row-gap-3 column-gap-1 pe-none"
+            class="drag-info d-flex flex-column align-items-center justify-content-center row-gap-3 column-gap-1 pe-none text-secondary"
           >
             <span
               class="drop-icon material-symbols-outlined"
@@ -83,7 +83,7 @@
         </div>
       </div>
       <div>
-        <button class="btn btn-primary d-flex flex-row justify-content-center align-items-center mx-auto mt-3" id="addRow">
+        <button class="btn bg-button d-flex flex-row justify-content-center align-items-center mx-auto mt-3" id="addRow">
           <span class="material-symbols-outlined me-2">add_circle</span>Add Row
         </button>
       </div>

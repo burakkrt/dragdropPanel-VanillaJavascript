@@ -3,23 +3,58 @@ import getFormHtmlElement from './components/formElements.js';
 // DOM element
 const draggables = document.querySelectorAll('.draggable');
 const elements = document.querySelectorAll('.row-element');
-
 // Local veriables
 let dragtype;
-
+// Since the scritp file type is module, it is necessary to define the functions in the window.
 window.editInput = editInput;
 window.editElement = editElement;
 window.deleteElement = deleteElement;
 window.clearRow = clearRow;
 window.addFormElement = addFormElement;
-
+// We move form elements with jQuery Sortable.
 export function jquerySortable(rowid) {
   $(`#${rowid} .row-content`).sortable({
     placeholder: 'ui-state-highlight',
   });
   $(`#${rowid} .row-content`).disableSelection();
 }
+// To drag form blocks in the sidebar
+draggables.forEach(draggable => {
+  draggable.addEventListener('dragstart', () => {
+    dragtype = draggable.getAttribute('id');
+  });
 
+  draggable.addEventListener('dragend', () => {});
+});
+// To place dragged form blocks into rows.
+elements.forEach(element => {
+  element.addEventListener('dragover', e => {
+    if (e.target.classList.contains('dropzone')) {
+      e.preventDefault();
+      e.target.style.backgroundColor = '#98D8AA';
+      e.target.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
+    }
+  });
+
+  element.addEventListener('dragleave', e => {
+    if (e.target.classList.contains('dropzone')) {
+      e.preventDefault();
+      e.target.style.backgroundColor = '';
+      e.target.style.boxShadow = '';
+    }
+  });
+
+  element.addEventListener('drop', e => {
+    const rowid = e.target.parentNode.getAttribute('id');
+    addRowContent(rowid, dragtype);
+    jquerySortable(rowid);
+    if (e.target.classList.contains('dropzone')) {
+      e.target.style.backgroundColor = '';
+      e.target.style.boxShadow = '';
+    }
+  });
+});
+// Create a new line item for dragged form elements
 export function addRowContent(rowid, formElementType) {
   const dropzone = document.querySelector(`#${rowid} .dropzone`);
   if (dropzone.classList.contains('null')) {
@@ -42,34 +77,12 @@ export function addRowContent(rowid, formElementType) {
       .insertAdjacentHTML('beforeend', getFormHtmlElement(rowid, formElementType));
   }
 }
-
-draggables.forEach(draggable => {
-  draggable.addEventListener('dragstart', () => {
-    dragtype = draggable.getAttribute('id');
-  });
-
-  draggable.addEventListener('dragend', () => {});
-});
-
-elements.forEach(element => {
-  element.addEventListener('dragover', e => {
-    if (e.target.classList.contains('dropzone')) {
-      e.preventDefault();
-    }
-  });
-
-  element.addEventListener('drop', e => {
-    const rowid = e.target.parentNode.getAttribute('id');
-    addRowContent(rowid, dragtype);
-    jquerySortable(rowid);
-  });
-});
-
+// Clicking the Add Row button creates a new row.
 document.getElementById('addRow').addEventListener('click', () => {
   const rowCount = document.querySelector('.main-content').children.length;
   const newId = `row${rowCount}`;
   const rowElement = `
-    <div class="row-element d-flex flex-column gap-3 p-3 rounded-3 mb-3" id="${newId}">
+    <div class="row-element d-flex flex-column gap-3 p-3 pb-5 rounded-3 mb-3" id="${newId}">
       <div class="row-element-header">
         <div class="d-flex flex-row justify-content-between align-items-center">
           <h5>Row ${rowCount}</h5>
@@ -101,9 +114,30 @@ document.getElementById('addRow').addEventListener('click', () => {
     }
   });
 
-  document.querySelector(`#${newId}`).addEventListener('drop', () => {
-    addRowContent(`${newId}`, dragtype);
-    jquerySortable(`${newId}`);
+  document.querySelector(`#${newId}`).addEventListener('dragover', e => {
+    if (e.target.classList.contains('dropzone')) {
+      e.preventDefault();
+      e.target.style.backgroundColor = '#98D8AA';
+      e.target.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.3)';
+    }
+  });
+
+  document.querySelector(`#${newId}`).addEventListener('dragleave', e => {
+    if (e.target.classList.contains('dropzone')) {
+      e.preventDefault();
+      e.target.style.backgroundColor = '';
+      e.target.style.boxShadow = '';
+    }
+  });
+
+  document.querySelector(`#${newId}`).addEventListener('drop', e => {
+    const rowid = e.target.parentNode.getAttribute('id');
+    addRowContent(rowid, dragtype);
+    jquerySortable(rowid);
+    if (e.target.classList.contains('dropzone')) {
+      e.target.style.backgroundColor = '';
+      e.target.style.boxShadow = '';
+    }
   });
 });
 
