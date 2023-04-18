@@ -3,6 +3,7 @@ const draggables = document.querySelectorAll('.draggable');
 const elements = document.querySelectorAll('.row-element');
 // Local veriables
 let dragtype;
+let deleteRowCounter = 0;
 // We move form elements with jQuery Sortable.
 function jquerySortable(rowid) {
   const t = `#${rowid}`;
@@ -213,9 +214,6 @@ function addRowContent(rowid, formElementType) {
     dropzone.querySelector('.drag-info span').style.animation = '';
     dropzone.querySelector('.drag-info').classList.replace('flex-column', 'flex-row');
     dropzone.classList.remove('null');
-    if (document.getElementById(`${rowid}-clearRowBtn`).classList.contains('disabled')) {
-      document.getElementById(`${rowid}-clearRowBtn`).classList.remove('disabled');
-    }
   } else {
     dropzone
       .querySelector('.row-content')
@@ -252,14 +250,17 @@ elements.forEach(element => {
 });
 // Clicking the Add Row button creates a new row.
 document.getElementById('addRow').addEventListener('click', () => {
-  const rowCount = document.querySelector('.main-content').children.length;
+  let rowCount = document.querySelector('.main-content').children.length;
+  if (deleteRowCounter > 0) {
+    rowCount += deleteRowCounter;
+  }
   const newId = `row${rowCount}`;
   const rowElement = `
     <div class="row-element d-flex flex-column gap-3 p-3 pb-5 rounded-3 mb-3" id="${newId}">
       <div class="row-element-header">
         <div class="d-flex flex-row justify-content-between align-items-center text-secondary">
           <h5>Row ${rowCount}</h5>
-          <button class="btn btn-sm btn-danger d-flex flex-row align-items-center justify-content-center gap-1 disabled" onclick="clearRow(${newId})" id="${newId}-clearRowBtn"><span class="material-symbols-outlined">delete_sweep</span>All row delete</button>
+          <button class="btn btn-sm btn-danger d-flex flex-row align-items-center justify-content-center gap-1" id="${newId}-clearRowBtn"><span class="material-symbols-outlined">delete_sweep</span>All row delete</button>
         </div>
       </div>
       <div class="dropzone null flex-grow-1 w-100 p-0 p-md-2 p-xl-4 rounded-4 mx-auto">
@@ -306,6 +307,15 @@ document.getElementById('addRow').addEventListener('click', () => {
       e.target.style.boxShadow = '';
     }
   });
+  // Delete row button add event listener
+  if (document.getElementById(`${newId}-clearRowBtn`)) {
+    document.getElementById(`${newId}-clearRowBtn`).addEventListener('click', () => {
+      if (document.getElementById(newId)) {
+        document.getElementById(newId).remove();
+        deleteRowCounter += 1;
+      }
+    });
+  }
 });
 // Click the edit icon next to the form element and recreate the properties of the current element.
 function editElement(id, type) {
@@ -465,44 +475,8 @@ function deleteElement(thisElement, rowId) {
         .classList.replace('flex-row', 'flex-column');
       currentRowElement.querySelector('.dropzone .drag-info .drop-icon').style.animation =
         'dropzoneIconAnimated 2s infinite ease-in-out';
-      if (
-        !document
-          .getElementById(`${currentRowElement.getAttribute('id')}-clearRowBtn`)
-          .classList.contains('disabled')
-      ) {
-        document
-          .getElementById(`${currentRowElement.getAttribute('id')}-clearRowBtn`)
-          .classList.add('disabled');
-      }
-    } else currentRowElement.remove();
-  }
-}
-// Click the delete all row button to clear the entire current row.
-// Note: If the line number is not 1, it will completely remove the line.
-function clearRow(rowId) {
-  const currentRowElement = rowId;
-  if (currentRowElement.getAttribute('id') === 'row1') {
-    if (currentRowElement.querySelector('.dropzone .row-content')) {
-      if (currentRowElement.querySelector('.dropzone .row-content').children.length > 0) {
-        currentRowElement.querySelector('.dropzone .row-content').remove();
-        currentRowElement.querySelector('.dropzone').classList.add('null');
-        currentRowElement
-          .querySelector('.dropzone .drag-info')
-          .classList.replace('flex-row', 'flex-column');
-        currentRowElement.querySelector('.dropzone .drag-info .drop-icon').style.animation =
-          'dropzoneIconAnimated 2s infinite ease-in-out';
-        if (
-          !document
-            .getElementById(`${rowId.getAttribute('id')}-clearRowBtn`)
-            .classList.contains('disabled')
-        ) {
-          document
-            .getElementById(`${rowId.getAttribute('id')}-clearRowBtn`)
-            .classList.add('disabled');
-        }
-      }
     }
-  } else rowId.remove();
+  }
 }
 // You can add form elements by clicking the + signs in the sidebar instead of drag and drop.
 function addFormElement(type) {
@@ -537,5 +511,13 @@ document.getElementById('menu-burger').addEventListener('click', () => {
 window.editInput = editInput;
 window.editElement = editElement;
 window.deleteElement = deleteElement;
-window.clearRow = clearRow;
 window.addFormElement = addFormElement;
+
+if (document.getElementById('row1')) {
+  if (document.getElementById('row1-clearRowBtn')) {
+    document.getElementById('row1-clearRowBtn').addEventListener('click', () => {
+      document.getElementById('row1').remove();
+      deleteRowCounter += 1;
+    });
+  }
+}
