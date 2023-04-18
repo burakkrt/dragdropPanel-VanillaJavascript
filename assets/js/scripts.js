@@ -1,13 +1,10 @@
-// Import components
-// eslint-disable-next-line import/extensions,import/no-cycle
-import getFormHtmlElement from './components/formElements.js';
 // DOM element
 const draggables = document.querySelectorAll('.draggable');
 const elements = document.querySelectorAll('.row-element');
 // Local veriables
 let dragtype;
 // We move form elements with jQuery Sortable.
-export function jquerySortable(rowid) {
+function jquerySortable(rowid) {
   const t = `#${rowid}`;
   // eslint-disable-next-line no-undef
   $(t).find('.row-content').sortable({
@@ -24,8 +21,186 @@ draggables.forEach(draggable => {
 
   draggable.addEventListener('dragend', () => {});
 });
+function getFormHtmlElement(rowid, formElementType) {
+  const randomId = Math.floor(Math.random() * 1000000);
+  if (formElementType === 'input') {
+    return `
+      <div class="input-group" >
+        <div class="form-floating">
+          <input type="text" class="form-control" id="${randomId}" placeholder="${randomId}">
+          <label for="floatingInputGroup1" id="${randomId}-inputLabel">Input</label>
+        </div>
+        <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'input')">
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
+        </span>
+        <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined delete-icon">delete</span>
+        </span>
+        <span class="input-group-text move-span cursor-move" draggable="true">
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
+        </span>
+      </div>
+    `;
+  }
+  if (formElementType === 'textarea') {
+    return `
+      <div class="input-group" >
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="min-height: 120px"></textarea>
+          <label for="floatingTextarea" id="${randomId}-textareaLabel">Textarea</label>
+        </div>
+        <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'textarea')">
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
+        </span>
+        <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined delete-icon">delete</span>
+        </span>
+        <span class="input-group-text move-span cursor-move" draggable="true">
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
+        </span>
+      </div>
+    `;
+  }
+  if (formElementType === 'selectlist') {
+    return `
+      <div class="input-group" >
+        <div class="form-floating" id="${randomId}">
+          <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+            <option value="" selected disabled hidden>Open this select menu</option>
+            <option value="1" id="${randomId}-select1">Test</option>
+            <option value="2" id="${randomId}-select2">Build</option>
+            <option value="3" id="${randomId}-select3">Debug</option>
+          </select>
+          <label for="floatingSelect" id="${randomId}-listname">Select List Name</label>
+        </div>
+        <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'selectlist')">
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
+        </span>
+        <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined delete-icon">delete</span>
+        </span>
+        <span class="input-group-text move-span cursor-move" draggable="true">
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
+        </span>
+      </div>
+    `;
+  }
+  if (formElementType === 'checkbox') {
+    return `
+    <div class="input-group" >
+      <div class="input-group-text">
+        <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
+      </div>
+      <input type="text" class="form-control bg-white" aria-label="Did you drink water?" value="Did you drink water?" disabled id="${randomId}">
+      <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'checkbox')">
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
+      </span>
+      <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined delete-icon">delete</span>
+      </span>
+      <span class="input-group-text move-span cursor-move" draggable="true">
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
+      </span>
+    </div>
+    `;
+  }
+  if (formElementType === 'boxgroup1') {
+    return `
+    <div class="input-group" >
+      <div class="input-group-text">
+        <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input">
+      </div>
+      <input type="text" class="form-control bg-white" aria-label="Did you drink water?" value="Did you drink water?" disabled id="${randomId}">
+      <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'checkbox')">
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
+      </span>
+      <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined delete-icon">delete</span>
+      </span>
+      <span class="input-group-text move-span cursor-move" draggable="true">
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
+      </span>
+    </div>
+    <div class="input-group" >
+        <div class="form-floating" id="${randomId}">
+          <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+            <option value="" selected disabled hidden>Open this select menu</option>
+            <option value="1" id="${randomId}-select1">Test</option>
+            <option value="2" id="${randomId}-select2">Build</option>
+            <option value="3" id="${randomId}-select3">Debug</option>
+          </select>
+          <label for="floatingSelect" id="${randomId}-listname">Select List Name</label>
+        </div>
+        <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'selectlist')">
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
+        </span>
+        <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined delete-icon">delete</span>
+        </span>
+        <span class="input-group-text move-span cursor-move" draggable="true">
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
+        </span>
+      </div>
+    `;
+  }
+  if (formElementType === 'boxgroup2') {
+    return `
+      <div class="input-group" >
+        <div class="form-floating">
+          <input type="text" class="form-control" id="${randomId}" placeholder="${randomId}">
+          <label for="floatingInputGroup1" id="${randomId}-inputLabel">Input</label>
+        </div>
+        <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'input')">
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
+        </span>
+        <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined delete-icon">delete</span>
+        </span>
+        <span class="input-group-text move-span cursor-move" draggable="true">
+          <span class="material-symbols-outlined move-icon" >drag_indicator</span>
+        </span>
+      </div>
+      <div class="input-group" >
+        <div class="form-floating">
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="min-height: 120px"></textarea>
+          <label for="floatingTextarea" id="${randomId}-textareaLabel">Textarea</label>
+        </div>
+        <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'textarea')">
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
+        </span>
+        <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined delete-icon">delete</span>
+        </span>
+        <span class="input-group-text move-span cursor-move" draggable="true">
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
+        </span>
+      </div>
+      <div class="input-group" >
+        <div class="form-floating" id="${randomId}">
+          <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+            <option value="" selected disabled hidden>Open this select menu</option>
+            <option value="1" id="${randomId}-select1">Test</option>
+            <option value="2" id="${randomId}-select2">Build</option>
+            <option value="3" id="${randomId}-select3">Debug</option>
+          </select>
+          <label for="floatingSelect" id="${randomId}-listname">Select List Name</label>
+        </div>
+        <span class="input-group-text cursor-pointer" onclick="editInput(${randomId},${rowid},'selectlist')">
+          <span class="material-symbols-outlined edit-icon">edit_note</span>
+        </span>
+        <span class="input-group-text cursor-pointer" onclick="deleteElement(this,${rowid})">
+          <span class="material-symbols-outlined delete-icon">delete</span>
+        </span>
+        <span class="input-group-text move-span cursor-move" draggable="true">
+          <span class="material-symbols-outlined move-icon">drag_indicator</span>
+        </span>
+      </div>
+    `;
+  }
+  return '';
+}
 // Create a new line item for dragged form elements
-export function addRowContent(rowid, formElementType) {
+function addRowContent(rowid, formElementType) {
   const dropzone = document.querySelector(`#${rowid} .dropzone`);
   if (dropzone.classList.contains('null')) {
     dropzone.insertAdjacentHTML(
@@ -203,7 +378,7 @@ function editElement(id, type) {
 }
 // Click on the edit icon next to the form element and
 // open the modal window to edit the current element.
-export function editInput(id, rowid, type) {
+function editInput(id, rowid, type) {
   const modalFormElement = document.getElementById('modalFormElements');
   const chanceButton = document.getElementById('chanceButton');
   const modalTitle = document.getElementById('modalTitle');
@@ -278,7 +453,7 @@ export function editInput(id, rowid, type) {
   }
 }
 // Delete the existing form element by clicking the delete icon next to the form element.
-export function deleteElement(thisElement, rowId) {
+function deleteElement(thisElement, rowId) {
   const currentRowElement = rowId;
   thisElement.parentElement.remove();
   if (currentRowElement.querySelector('.dropzone .row-content').children.length === 0) {
