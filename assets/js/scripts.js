@@ -203,21 +203,23 @@ function getFormHtmlElement(rowid, formElementType) {
 // Create a new line item for dragged form elements
 function addRowContent(rowid, formElementType) {
   const dropzone = document.querySelector(`#${rowid} .dropzone`);
-  if (dropzone.classList.contains('null')) {
-    dropzone.insertAdjacentHTML(
-      'afterbegin',
-      `<div class="row-content d-flex flex-column gap-3 gap-md-2 mb-3"> ${getFormHtmlElement(
-        rowid,
-        formElementType,
-      )} </div>`,
-    );
-    dropzone.querySelector('.drag-info span').style.animation = '';
-    dropzone.querySelector('.drag-info').classList.replace('flex-column', 'flex-row');
-    dropzone.classList.remove('null');
-  } else {
-    dropzone
-      .querySelector('.row-content')
-      .insertAdjacentHTML('beforeend', getFormHtmlElement(rowid, formElementType));
+  if (document.querySelector('.main-content .row-element')) {
+    if (dropzone.classList.contains('null')) {
+      dropzone.insertAdjacentHTML(
+        'afterbegin',
+        `<div class="row-content d-flex flex-column gap-3 gap-md-2 mb-3"> ${getFormHtmlElement(
+          rowid,
+          formElementType,
+        )} </div>`,
+      );
+      dropzone.querySelector('.drag-info span').style.animation = '';
+      dropzone.querySelector('.drag-info').classList.replace('flex-column', 'flex-row');
+      dropzone.classList.remove('null');
+    } else {
+      dropzone
+        .querySelector('.row-content')
+        .insertAdjacentHTML('beforeend', getFormHtmlElement(rowid, formElementType));
+    }
   }
 }
 // To place dragged form blocks into rows.
@@ -480,23 +482,26 @@ function deleteElement(thisElement, rowId) {
 }
 // You can add form elements by clicking the + signs in the sidebar instead of drag and drop.
 function addFormElement(type) {
-  if (document.querySelector('.main-content').children.length <= 2) {
-    addRowContent('row1', type);
-    jquerySortable('row1');
-    if (document.getElementById('menu-burger')) {
-      document.getElementById('menu-burger').click();
+  if (document.querySelector('.main-content .row-element')) {
+    if (document.querySelector('.main-content').children.length <= 2) {
+      const justRow = document.querySelector('.main-content .row-element').getAttribute('id');
+      addRowContent(justRow, type);
+      jquerySortable(justRow);
+      if (document.getElementById('menu-burger')) {
+        document.getElementById('menu-burger').click();
+      }
     }
-  }
-  if (document.querySelector('.main-content').children.length > 2) {
-    const row =
-      document.querySelector('.main-content').children[
-        document.querySelector('.main-content').children.length - 2
-      ];
-    const rowId = row.getAttribute('id');
-    addRowContent(rowId, type);
-    jquerySortable(rowId);
-    if (document.getElementById('menu-burger')) {
-      document.getElementById('menu-burger').click();
+    if (document.querySelector('.main-content').children.length > 2) {
+      const row =
+        document.querySelector('.main-content').children[
+          document.querySelector('.main-content').children.length - 2
+        ];
+      const rowId = row.getAttribute('id');
+      addRowContent(rowId, type);
+      jquerySortable(rowId);
+      if (document.getElementById('menu-burger')) {
+        document.getElementById('menu-burger').click();
+      }
     }
   }
 }
